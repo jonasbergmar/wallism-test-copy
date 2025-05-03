@@ -152,7 +152,7 @@ const WallpaperViewer = () => {
           </Canvas>
         </div>
       </div>
-      <div className="flex flex-col gap-4 py-4 rounded-lg backdrop-blur-sm justify-start items-start">
+      <div className="flex flex-col gap-4 py-4 lg:py-0 lg:px-4 rounded-lg backdrop-blur-sm justify-start items-start">
         <div
           style={{
             display: "flex",
