@@ -21,7 +21,12 @@ const Model = ({
   offsetY: number;
 }) => {
   const { scene, cameras } = useGLTF("/WallsExport2.gltf");
-  const texture = useTexture(wallpaper.image);
+  const texture = useTexture(wallpaper.image, (texture) => {
+    texture.minFilter = THREE.LinearFilter;
+    texture.magFilter = THREE.LinearFilter;
+    texture.generateMipmaps = true;
+    texture.anisotropy = 16;
+  });
   const gltfCamera = cameras && cameras[0];
   const set = useThree((state) => state.set);
 
@@ -31,9 +36,6 @@ const Model = ({
   texture.repeat.set(tileX, tileY);
   texture.offset.set(offsetX, offsetY);
   texture.flipY = false;
-  texture.minFilter = THREE.LinearFilter;
-  texture.magFilter = THREE.LinearFilter;
-  texture.generateMipmaps = false;
 
   if ("encoding" in texture && "sRGBEncoding" in THREE) {
     texture.encoding = THREE.sRGBEncoding;
@@ -78,7 +80,7 @@ const WallpaperViewer = () => {
   const [offsetY, setOffsetY] = useState(0);
 
   return (
-    <div className="flex flex-col items-center justify-center lg:w-2/3 lg:h-2/3 w-full px-4">
+    <div className="flex flex-col lg:flex-row items-end justify-center lg:w-4/5 lg:h-4/5 w-full px-4">
       <div
         style={{
           position: "relative",
@@ -86,7 +88,7 @@ const WallpaperViewer = () => {
           height: "100%",
           maxWidth: "2048px",
           aspectRatio: "2048/1536",
-          border: "2px solid black",
+          borderRadius: "8px",
           overflow: "hidden",
         }}
       >
@@ -149,17 +151,16 @@ const WallpaperViewer = () => {
             </Suspense>
           </Canvas>
         </div>
+      </div>
+      <div className="flex flex-col gap-4 px-4 rounded-lg backdrop-blur-sm justify-start items-start">
         <div
           style={{
-            position: "absolute",
-            bottom: "100px",
-            left: "50%",
-            transform: "translateX(-50%)",
             display: "flex",
             flexDirection: "column",
             gap: "10px",
             zIndex: 3,
             background: "rgba(0,0,0,0.5)",
+            backdropFilter: "blur(10px)",
             padding: "10px",
             borderRadius: "8px",
             pointerEvents: "auto",
@@ -200,8 +201,8 @@ const WallpaperViewer = () => {
             onChange={setOffsetY}
           />
         </div>
+        <Wallpapers onSelectWallpaper={setSelectedWallpaper} />
       </div>
-      <Wallpapers onSelectWallpaper={setSelectedWallpaper} />
     </div>
   );
 };

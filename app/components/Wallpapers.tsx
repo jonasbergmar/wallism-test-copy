@@ -9,9 +9,9 @@ const wallpapers = [
   },
   {
     id: 2,
-    name: "Flowers",
-    image: "/Flowers.jpg",
-    description: "Flowers Wallpaper",
+    name: "Colorful",
+    image: "/colorful.jpg",
+    description: "Colorful Wallpaper",
   },
   {
     id: 3,
@@ -46,17 +46,7 @@ type WallpapersProps = {
 
 const Wallpapers = ({ onSelectWallpaper }: WallpapersProps) => {
   return (
-    <div
-      style={{
-        position: "absolute",
-        bottom: "20px",
-        left: "50%",
-        transform: "translateX(-50%)",
-        display: "flex",
-        gap: "10px",
-        zIndex: 3,
-      }}
-    >
+    <div className=" flex gap-4 p-4 bg-black/50 rounded-lg backdrop-blur-sm ">
       {wallpapers.map((wallpaper) => (
         <button
           key={wallpaper.id}

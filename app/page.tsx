@@ -2,7 +2,7 @@ import WallpaperViewer from "./components/WallpaperViewer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex items-center justify-center w-full">
+    <main className=" flex items-center justify-center w-full p-4 md:p-8 lg:p-20">
       <WallpaperViewer />
     </main>
   );
