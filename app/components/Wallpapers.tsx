@@ -46,7 +46,7 @@ type WallpapersProps = {
 
 const Wallpapers = ({ onSelectWallpaper }: WallpapersProps) => {
   return (
-    <div className=" flex gap-4 p-4 bg-black/50 rounded-lg backdrop-blur-sm ">
+    <div className=" flex w-full flex-wrap gap-4 p-4 bg-black/50 rounded-lg backdrop-blur-sm ">
       {wallpapers.map((wallpaper) => (
         <button
           key={wallpaper.id}

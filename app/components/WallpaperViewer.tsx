@@ -152,13 +152,12 @@ const WallpaperViewer = () => {
           </Canvas>
         </div>
       </div>
-      <div className="flex flex-col gap-4 px-4 rounded-lg backdrop-blur-sm justify-start items-start">
+      <div className="flex flex-col gap-4 py-4 rounded-lg backdrop-blur-sm justify-start items-start">
         <div
           style={{
             display: "flex",
             flexDirection: "column",
             gap: "10px",
-            zIndex: 3,
             background: "rgba(0,0,0,0.5)",
             backdropFilter: "blur(10px)",
             padding: "10px",
