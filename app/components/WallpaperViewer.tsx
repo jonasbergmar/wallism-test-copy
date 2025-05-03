@@ -6,6 +6,7 @@ import { Suspense, useEffect, useState } from "react";
 import * as THREE from "three";
 import Wallpapers from "./Wallpapers";
 import Slider from "./Slider";
+import Image from "next/image";
 
 const Model = ({
   wallpaper,
@@ -80,7 +81,7 @@ const WallpaperViewer = () => {
   const [offsetY, setOffsetY] = useState(0);
 
   return (
-    <div className="flex flex-col lg:flex-row items-end justify-center lg:w-4/5 lg:h-4/5 w-full px-4">
+    <div className="flex flex-col lg:flex-row items-end justify-center lg:w-4/5 lg:h-4/5 w-full ">
       <div
         style={{
           position: "relative",
@@ -92,19 +93,17 @@ const WallpaperViewer = () => {
           overflow: "hidden",
         }}
       >
-        <img
-          src="/BG.jpg"
-          alt="Background"
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            position: "absolute",
-            top: 0,
-            left: 0,
-            zIndex: 1,
-          }}
-        />
+        <div className="absolute inset-0 w-full h-full">
+          <Image
+            src="/BG.jpg"
+            alt="Background"
+            fill
+            sizes="(max-width: 2048px) 100vw, 2048px"
+            className="object-cover"
+            quality={100}
+            priority
+          />
+        </div>
         <div
           style={{
             position: "absolute",

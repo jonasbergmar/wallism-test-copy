@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const wallpapers = [
   {
@@ -7,26 +8,21 @@ const wallpapers = [
     image: "/BambooPattern.jpg",
     description: "Bamboo Wallpaper",
   },
+
   {
     id: 2,
-    name: "Colorful",
-    image: "/colorful.jpg",
-    description: "Colorful Wallpaper",
-  },
-  {
-    id: 3,
     name: "Shells",
     image: "/Shell-Pattern.jpg",
     description: "Shells Wallpaper",
   },
   {
-    id: 4,
+    id: 3,
     name: "Jungle",
     image: "/jungle.jpg",
     description: "Jungle Wallpaper",
   },
   {
-    id: 5,
+    id: 4,
     name: "Skog",
     image: "/skog.jpg",
     description: "Skog Wallpaper",
@@ -62,14 +58,14 @@ const Wallpapers = ({ onSelectWallpaper }: WallpapersProps) => {
             background: "none",
           }}
         >
-          <img
+          <Image
             src={wallpaper.image}
             alt={wallpaper.name}
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
+            className="object-cover"
+            width={60}
+            height={60}
+            quality={100}
+            priority
           />
         </button>
       ))}
