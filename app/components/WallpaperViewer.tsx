@@ -20,7 +20,7 @@ const Model = ({
   offsetX: number;
   offsetY: number;
 }) => {
-  const { scene, cameras } = useGLTF("/WallsExport.gltf");
+  const { scene, cameras } = useGLTF("/WallsExport2.gltf");
   const texture = useTexture(wallpaper.image);
   const gltfCamera = cameras && cameras[0];
   const set = useThree((state) => state.set);
@@ -31,6 +31,9 @@ const Model = ({
   texture.repeat.set(tileX, tileY);
   texture.offset.set(offsetX, offsetY);
   texture.flipY = false;
+  texture.minFilter = THREE.LinearFilter;
+  texture.magFilter = THREE.LinearFilter;
+  texture.generateMipmaps = false;
 
   if ("encoding" in texture && "sRGBEncoding" in THREE) {
     texture.encoding = THREE.sRGBEncoding;
@@ -128,6 +131,12 @@ const WallpaperViewer = () => {
               left: 0,
             }}
             camera={{ position: [0, 0, 5], fov: 50 }}
+            dpr={[1, 2]}
+            gl={{
+              antialias: true,
+              powerPreference: "high-performance",
+              preserveDrawingBuffer: true,
+            }}
           >
             <Suspense fallback={null}>
               <Model
@@ -159,8 +168,8 @@ const WallpaperViewer = () => {
           <Slider
             label="Tile X"
             value={tileX}
-            min={0}
-            max={5}
+            min={1}
+            max={20}
             step={0.1}
             onChange={setTileX}
             formatValue={(v) => v.toFixed(1)}
@@ -168,8 +177,8 @@ const WallpaperViewer = () => {
           <Slider
             label="Tile Y"
             value={tileY}
-            min={0}
-            max={5}
+            min={1}
+            max={20}
             step={0.1}
             onChange={setTileY}
             formatValue={(v) => v.toFixed(1)}
