@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 import { Canvas, useThree } from "@react-three/fiber";
 import { useGLTF, useTexture } from "@react-three/drei";
@@ -81,7 +80,7 @@ const WallpaperViewer = () => {
   const [offsetY, setOffsetY] = useState(0);
 
   return (
-    <div className="flex flex-col lg:flex-row items-end justify-center lg:w-4/5 lg:h-4/5 w-full ">
+    <div className="flex flex-col lg:flex-row items-end justify-center  w-full ">
       <div
         style={{
           position: "relative",
@@ -89,7 +88,6 @@ const WallpaperViewer = () => {
           height: "100%",
           maxWidth: "2048px",
           aspectRatio: "2048/1536",
-          borderRadius: "8px",
           overflow: "hidden",
         }}
       >
@@ -151,7 +149,7 @@ const WallpaperViewer = () => {
           </Canvas>
         </div>
       </div>
-      <div className="flex flex-col gap-4 py-4 lg:py-0 lg:px-4 rounded-lg backdrop-blur-sm justify-start items-start">
+      <div className="flex flex-col w-full gap-4 py-4 lg:py-0 lg:px-4 rounded-lg backdrop-blur-sm justify-start items-start">
         <div
           style={{
             display: "flex",
