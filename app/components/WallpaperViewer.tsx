@@ -21,25 +21,22 @@ const Model = ({
   offsetY: number;
 }) => {
   const { scene, cameras } = useGLTF("/WallsExport2.gltf");
-  const texture = useTexture(wallpaper.image, (texture) => {
-    texture.minFilter = THREE.LinearFilter;
-    texture.magFilter = THREE.LinearFilter;
-    texture.generateMipmaps = true;
-    texture.anisotropy = 16;
-  });
-  const gltfCamera = cameras && cameras[0];
-  const set = useThree((state) => state.set);
+  const texture = useTexture(wallpaper.image);
+  const { gl } = useThree();
 
-  // Set texture to repeat (tile)
+  // Set texture quality
+  texture.minFilter = THREE.LinearFilter;
+  texture.magFilter = THREE.LinearFilter;
+  texture.generateMipmaps = true;
+  texture.anisotropy = gl.capabilities.getMaxAnisotropy();
+  texture.flipY = false;
   texture.wrapS = THREE.RepeatWrapping;
   texture.wrapT = THREE.RepeatWrapping;
   texture.repeat.set(tileX, tileY);
   texture.offset.set(offsetX, offsetY);
-  texture.flipY = false;
 
-  if ("encoding" in texture && "sRGBEncoding" in THREE) {
-    texture.encoding = THREE.sRGBEncoding;
-  }
+  const gltfCamera = cameras && cameras[0];
+  const set = useThree((state) => state.set);
 
   scene.traverse((child) => {
     if (child instanceof THREE.Mesh) {
@@ -78,6 +75,12 @@ const WallpaperViewer = () => {
   const [tileY, setTileY] = useState(2);
   const [offsetX, setOffsetX] = useState(0);
   const [offsetY, setOffsetY] = useState(0);
+
+  // Use devicePixelRatio for best quality
+  const [dpr, setDpr] = useState(1);
+  useEffect(() => {
+    setDpr(window.devicePixelRatio || 1);
+  }, []);
 
   return (
     <div className="flex flex-col lg:flex-row items-end justify-center  w-full ">
@@ -130,7 +133,7 @@ const WallpaperViewer = () => {
               left: 0,
             }}
             camera={{ position: [0, 0, 5], fov: 50 }}
-            dpr={[1, 2]}
+            dpr={dpr}
             gl={{
               antialias: true,
               powerPreference: "high-performance",
