@@ -22,13 +22,7 @@ const Model = ({
 }) => {
   const { scene, cameras } = useGLTF("/WallsExport2.gltf");
   const texture = useTexture(wallpaper.image);
-  const { gl } = useThree();
 
-  // Set texture quality
-  texture.minFilter = THREE.LinearFilter;
-  texture.magFilter = THREE.LinearFilter;
-  texture.generateMipmaps = true;
-  texture.anisotropy = gl.capabilities.getMaxAnisotropy();
   texture.flipY = false;
   texture.wrapS = THREE.RepeatWrapping;
   texture.wrapT = THREE.RepeatWrapping;
