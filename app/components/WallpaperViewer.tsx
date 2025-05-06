@@ -38,7 +38,6 @@ const Model = ({
         map: texture,
         color: 0xffffff,
         side: THREE.DoubleSide,
-        transparent: true,
         toneMapped: false,
       });
       child.rotation.set(0, 0, 0);
