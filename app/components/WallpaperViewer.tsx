@@ -39,6 +39,7 @@ const Model = ({
         color: 0xffffff,
         side: THREE.DoubleSide,
         toneMapped: false,
+        transparent: false,
       });
       child.rotation.set(0, 0, 0);
     }
