@@ -40,7 +40,8 @@ const Model = ({
         color: 0xffffff,
         side: THREE.DoubleSide,
         toneMapped: false,
-        transparent: false,
+        transparent: true,
+        opacity: 0.9,
         fog: false,
       });
       child.rotation.set(0, 0, 0);
