@@ -22,6 +22,7 @@ const Model = ({
 }) => {
   const { scene, cameras } = useGLTF("/WallsExport2.gltf");
   const texture = useTexture(wallpaper.image);
+  texture.colorSpace = THREE.SRGBColorSpace;
 
   texture.flipY = false;
   texture.wrapS = THREE.RepeatWrapping;
@@ -40,7 +41,7 @@ const Model = ({
         side: THREE.DoubleSide,
         toneMapped: false,
         transparent: false,
-        opacity: 1,
+        fog: false,
       });
       child.rotation.set(0, 0, 0);
     }
@@ -122,7 +123,7 @@ const WallpaperViewer = () => {
             style={{
               width: "100%",
               height: "100%",
-              background: "#fff",
+              background: "fff",
               position: "absolute",
               top: 0,
               left: 0,
