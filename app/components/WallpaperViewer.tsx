@@ -23,7 +23,7 @@ const Model = ({
   const { scene, cameras } = useGLTF("/WallsExport2.gltf");
   const texture = useTexture(wallpaper.image);
   texture.colorSpace = THREE.SRGBColorSpace;
-
+  texture.anisotropy = 8;
   texture.flipY = false;
   texture.wrapS = THREE.RepeatWrapping;
   texture.wrapT = THREE.RepeatWrapping;
