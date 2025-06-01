@@ -62,8 +62,8 @@ const Wallpapers = ({ onSelectWallpaper }: WallpapersProps) => {
             src={wallpaper.image}
             alt={wallpaper.name}
             className="object-cover"
-            width={2048}
-            height={1536}
+            width={1592}
+            height={2048}
             quality={100}
             priority
           />

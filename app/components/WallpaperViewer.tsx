@@ -20,9 +20,10 @@ const Model = ({
   offsetX: number;
   offsetY: number;
 }) => {
-  const { scene, cameras } = useGLTF("/WallsExport2.gltf");
+  const { scene, cameras } = useGLTF("/MappingTest9.gltf");
   const texture = useTexture(wallpaper.image);
   texture.colorSpace = THREE.SRGBColorSpace;
+  texture.anisotropy = 8;
 
   texture.flipY = false;
   texture.wrapS = THREE.RepeatWrapping;
@@ -31,6 +32,7 @@ const Model = ({
   texture.offset.set(offsetX, offsetY);
 
   const gltfCamera = cameras && cameras[0];
+
   const set = useThree((state) => state.set);
 
   scene.traverse((child) => {
@@ -86,17 +88,17 @@ const WallpaperViewer = () => {
           position: "relative",
           width: "100%",
           height: "100%",
-          maxWidth: "2048px",
-          aspectRatio: "2048/1536",
+          maxWidth: "1592px",
+          aspectRatio: "1592/2048",
           overflow: "hidden",
         }}
       >
         <div className="absolute inset-0 w-full h-full">
           <Image
-            src="/BG.jpg"
+            src="/wine-cellar-BG.jpg"
             alt="Background"
             fill
-            sizes="(max-width: 2048px) 100vw, 2048px"
+            sizes="(max-width: 1592px) 100vw, 1592px"
             className="object-cover"
             quality={100}
             priority
@@ -112,10 +114,10 @@ const WallpaperViewer = () => {
             zIndex: 2,
             mixBlendMode: "multiply",
             pointerEvents: "none",
-            WebkitMaskImage: "url(/FG.png)",
+            WebkitMaskImage: "url(/wine-cellar-FG-4.png)",
             WebkitMaskRepeat: "no-repeat",
             WebkitMaskSize: "100% 100%",
-            maskImage: "url(/FG.png)",
+            maskImage: "url(/wine-cellar-FG-4.png)",
             maskRepeat: "no-repeat",
             maskSize: "100% 100%",
           }}
